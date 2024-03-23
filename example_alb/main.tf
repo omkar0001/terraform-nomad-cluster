@@ -1,19 +1,15 @@
 # main.tf
 
+data "local_file" "public_key" {
+  filename = "./nomad_test.pub"
+}
 
-// Replace the values in the locals with the values you want to use.
 locals {
-  public_key_path = "./nomad_test.pub"
   public_subnets  = ["subnet-123", "subnet-456"]
   private_subnets = ["subnet-abc", "subnet-def"]
   vpc_id          = "vpc-123"
   ami             = "ami-123"
-  port            = 8081
-}
-
-
-data "local_file" "public_key" {
-  filename = local.public_key_path
+  port            = 81
 }
 
 

@@ -6,10 +6,10 @@ terraform {
     }
   }
   cloud {
-    organization = "DoctorPlan"
+    organization = "test"
     workspaces {
-      project = "Backend"
-      tags = ["doctorplan"]
+      project = "test"
+      tags = ["test"]
     }
   }
 }

@@ -73,6 +73,7 @@ resource "aws_autoscaling_group" "autoscaling_group" {
   launch_template           = aws_launch_template.launch_template[each.key].id
   vpc_zone_identifier       = var.private_subnet_ids
   user_data = each.value.user_data
+  target_group_arns = each.value.target_group_arns
 
   instance_maintenance_policy {
     min_healthy_percentage = 90

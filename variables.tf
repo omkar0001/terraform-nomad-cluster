@@ -13,6 +13,11 @@ variable "retry_join" {
   }
 }
 
+variable "vpc_id" {
+    description = "The VPC ID to launch resources in"
+    type = string
+}
+
 variable "private_subnet_ids" {
   description = "A list of subnet IDs to launch resources in"
   type = list(string)
@@ -32,6 +37,7 @@ variable "nomad_server" {
     public_key = string
     count = number
     policy_arns =  list(string)
+    target_group_arns = list(string)
     ingresses = list(object({
       from_port = number
       to_port   = number
@@ -55,6 +61,7 @@ variable "nomad_client" {
     public_key = string
     count = number
     policy_arns =  list(string)
+    target_group_arns = list(string)
     ingresses = list(object({
       from_port = number
       to_port   = number
@@ -76,6 +83,7 @@ variable "bastion" {
     ami    = string
     instance_type = string
     public_key = string
+    target_group_arns = list(string)
     ingresses = list(object({
       from_port = number
       to_port   = number
