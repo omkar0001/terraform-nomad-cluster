@@ -9,6 +9,7 @@ locals {
   vpc_id          = "vpc-123"
   ami             = "ami-123"
   port            = 8081
+  instance_type   = "t2.micro"
 }
 
 
@@ -26,7 +27,7 @@ module "nomad_cluster" {
 
   nomad_client = {
       ami  = local.ami
-      instance_type = "t2.micro"
+      instance_type = local.instance_type
       public_key = data.local_file.public_key.content
       count = 1
       nomad_ingresses = [{
@@ -41,14 +42,14 @@ module "nomad_cluster" {
 
   nomad_server = {
      ami  = local.ami
-     instance_type = "t2.micro"
+     instance_type = local.instance_type
      public_key = data.local_file.public_key.content
      count = 1
   }
 
   bastion = {
       ami  = local.ami
-      instance_type = "t2.micro"
+      instance_type = local.instance_type
       public_key = data.local_file.public_key.content
   }
 }

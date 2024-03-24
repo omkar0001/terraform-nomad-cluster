@@ -15,6 +15,18 @@ data "local_file" "public_key" {
   filename = local.public_key_path
 }
 
+resource "aws_lb_target_group" "alb-tg" {
+  name        = "alb-tg"
+  target_type = "alb"
+  port        = local.port
+  protocol    = "TCP"
+  vpc_id      = local.vpc_id
+  health_check {
+     port = local.port
+     path = "/"
+  }
+}
+
 module "nomad_cluster" {
   source              = "../module"
   name                = "test-nomad-cluster"

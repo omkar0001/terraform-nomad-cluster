@@ -13,9 +13,9 @@ resource "aws_security_group" "alb-sg" {
   vpc_id = local.vpc_id
 
   ingress {
-    from_port = 80
+    from_port = local.port
     protocol = "tcp"
-    to_port = 80
+    to_port = local.port
     cidr_blocks = [
       "0.0.0.0/0"]
   }
